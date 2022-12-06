@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (c) 2022 Association Prologin <association@prologin.org>
+# Copyright (c) 2022 Marc 'risson' Schmitt <marc.schmitt@prologin.org>
+
+[tool.poetry]
+name = "django-pypprof"
+version = "0.0.1"
+description = "Pypprof Django wrapper"
+authors = ["Association Prologin <info@prologin.org>", "Marc 'risson' Schmitt <marc.schmitt@prologin.org>"]
+license = "GPL-3.0-or-later"
+repository = "https://gitlab.com/prologin/tech/packages/django-pypprof.git"
+packages = [
+    { include = "django_pypprof" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+mprofile = "0.0.14"
+protobuf = "^3.20"
+pypprof = "0.0.1"
+
+[tool.poetry.dev-dependencies]
+black = "*"
+isort = "*"
+pre-commit = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79
+
+[tool.isort]
+profile = "black"
+line_length = 79

@@ -1,0 +1,70 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (c) 2022 Association Prologin <association@prologin.org>
+# Copyright (c) 2022 Marc 'risson' Schmitt <marc.schmitt@prologin.org>
+---
+
+stages:
+  - build
+  - qa
+  - security
+  - deploy
+
+default:
+  image: python:3.10-slim
+
+include:
+  - template: SAST.gitlab-ci.yml
+  - template: Code-Quality.gitlab-ci.yml
+  - template: Security/License-Scanning.gitlab-ci.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
+
+build:
+  stage: build
+  artifacts:
+    paths:
+      - dist/*
+      - requirements.txt
+  before_script:
+    - pip install poetry
+  script:
+    - poetry build -n -v
+  after_script:
+    # Needed for the license scanning job
+    - poetry export --format requirements.txt > requirements.txt
+
+code_quality:
+  stage: qa
+  needs: []
+
+dependency_scanning:
+  stage: security
+  needs: []
+
+license_scanning:
+  stage: security
+  needs: []
+  dependencies:
+    - build
+
+sast:
+  stage: security
+  needs: []
+
+secret_detection:
+  stage: security
+  needs: []
+
+deploy:
+  stage: deploy
+  variables:
+    POETRY_HTTP_BASIC_GITLAB_USERNAME: "gitlab-ci-token"
+    POETRY_HTTP_BASIC_GITLAB_PASSWORD: "${CI_JOB_TOKEN}"
+  before_script:
+    - pip install poetry
+    - poetry config repositories.gitlab "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/pypi"
+  script:
+    - rm -f dist/*.whl
+    - poetry publish -n -v -r gitlab
+  rules:
+    - if: $CI_COMMIT_TAG
