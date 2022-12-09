@@ -4,7 +4,7 @@
 
 [tool.poetry]
 name = "django-pypprof"
-version = "0.0.1"
+version = "1.0.0"
 description = "Pypprof Django wrapper"
 authors = ["Association Prologin <info@prologin.org>", "Marc 'risson' Schmitt <marc.schmitt@prologin.org>"]
 license = "GPL-3.0-or-later"
