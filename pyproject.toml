@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (c) 2022 Association Prologin <association@prologin.org>
 # Copyright (c) 2022 Marc 'risson' Schmitt <marc.schmitt@prologin.org>
 
@@ -7,7 +7,7 @@ name = "django-pypprof"
 version = "1.0.0"
 description = "Pypprof Django wrapper"
 authors = ["Association Prologin <info@prologin.org>", "Marc 'risson' Schmitt <marc.schmitt@prologin.org>"]
-license = "GPL-3.0-or-later"
+license = "AGPL-3.0-or-later"
 repository = "https://gitlab.com/prologin/tech/packages/django-pypprof.git"
 packages = [
     { include = "django_pypprof" },
