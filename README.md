@@ -9,7 +9,7 @@ django-pypprof
 Install the package:
 
 ```sh
-pip install django-pypprof --extra-index-url https://gitlab.com/api/v4/projects/36832129/packages/pypi/simple
+pip install django-pypprof --extra-index-url https://gitlab.com/api/v4/groups/prologin/-/packages/pypi/simple
 ```
 
 Add it to your `INSTALLED_APPS`:
